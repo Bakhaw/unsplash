@@ -5,7 +5,7 @@ import UpdateApp from './components/UpdateApp';
 
 class App extends Component {
   componentDidMount() {
-    GalleryAPI.methods.init();
+    GalleryAPI.methods.global.init();
   }
   render() {
     return (
