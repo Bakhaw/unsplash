@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 import GalleryAPI from '../api/gallery';
 
 function usePhotos() {
+  const [photos, setPhotos] = useState([]);
+  useEffect(() => {
+    getPhotos();
+  }, []);
+
   const getPhotos = async () => {
     try {
       const photos = await GalleryAPI.methods.photos.getAllPhotos();
@@ -11,10 +16,6 @@ function usePhotos() {
     }
   };
 
-  const [photos, setPhotos] = useState([]);
-  useEffect(() => {
-    getPhotos();
-  }, []);
   return photos;
 }
 
