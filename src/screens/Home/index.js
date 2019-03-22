@@ -31,6 +31,7 @@ class Home extends Component {
     const height = d.offsetHeight;
 
     if (offset >= height) {
+      console.log({ height, offset });
       this.getPhotos(this.state.currentPage);
     }
   };
