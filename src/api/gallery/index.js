@@ -1,13 +1,12 @@
 import axios from 'axios';
-import firebase from 'firebase/app';
 import 'firebase/database';
-import config from '../firebase/config';
 
 const Gallery = {
   config: {
-    accessKey: localStorage.getItem('accessKey'),
+    accessKey:
+      '41e3f9e71f60bae04300d18b08fef18dc42c596f9000b6b4cdce1f01bb54828c',
     collectionsUrl: 'https://api.unsplash.com/collections/',
-    photosUrl: 'https://api.unsplash.com/photos/',
+    photosUrl: 'https://api.unsplash.com/photos/?per_page=6&page=',
     searchUrl: 'https://api.unsplash.com/search/',
     statsUrl: 'https://api.unsplash.com/stats/',
     usersUrl: 'https://api.unsplash.com/users/'
@@ -49,22 +48,6 @@ const Gallery = {
       }
     },
     global: {
-      init: async () => {
-        firebase.initializeApp(config);
-        const dbRef = firebase.database().ref('profile');
-        await dbRef.on(
-          'value',
-          snapshot => {
-            if (!accessKey) {
-              localStorage.setItem('accessKey', snapshot.val().accessKey);
-              console.log('Set item with success');
-            }
-          },
-          error => {
-            console.log('Error', error);
-          }
-        );
-      },
       search: async (searchType, query) => {
         // ? available searchType
         // "collections/"
@@ -94,11 +77,12 @@ const Gallery = {
       }
     },
     photos: {
-      getAllPhotos: async () => {
+      getAllPhotos: async currentPage => {
         try {
           const request = await axios.get(
-            `${photosUrl}?client_id=${accessKey}`
+            `${photosUrl}${currentPage}&client_id=${accessKey}`
           );
+
           return request.data;
         } catch (error) {
           console.log('Error', error);

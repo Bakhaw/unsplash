@@ -10,7 +10,7 @@ function Router() {
       <>
         <NavBar />
         <Switch>
-          {/* <Route path='/artist/:artistId' component={Artist} /> */}
+          <Route path='/collections/' component={Home} />
           <Route path='/' component={Home} />
         </Switch>
       </>

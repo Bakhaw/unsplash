@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import GalleryAPI from './api/gallery';
 import Router from './router';
+import GalleryProvider from './context';
 import UpdateApp from './components/UpdateApp';
 
 const GlobalStyle = createGlobalStyle`
@@ -26,16 +26,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  useEffect(() => {
-    GalleryAPI.methods.global.init();
-  }, []);
-
   return (
-    <>
+    <GalleryProvider>
       <Router />
       <UpdateApp />
       <GlobalStyle />
-    </>
+    </GalleryProvider>
   );
 }
 export default App;

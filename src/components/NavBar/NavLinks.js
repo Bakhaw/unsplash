@@ -8,10 +8,6 @@ const Links = [
     to: '/'
   },
   {
-    label: 'Photos',
-    to: '/photos'
-  },
-  {
     label: 'Collections',
     to: '/collections'
   }
