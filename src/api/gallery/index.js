@@ -5,7 +5,7 @@ const Gallery = {
     accessKey:
       '41e3f9e71f60bae04300d18b08fef18dc42c596f9000b6b4cdce1f01bb54828c',
     collectionsUrl: 'https://api.unsplash.com/collections/',
-    photosUrl: 'https://api.unsplash.com/photos/?per_page=3&page=',
+    photosUrl: 'https://api.unsplash.com/photos/?per_page=30&page=',
     searchUrl: 'https://api.unsplash.com/search/',
     statsUrl: 'https://api.unsplash.com/stats/',
     usersUrl: 'https://api.unsplash.com/users/'

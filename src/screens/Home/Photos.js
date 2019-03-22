@@ -41,11 +41,11 @@ class Photos extends React.PureComponent {
     const { photos } = this.props.contextState;
     const { columnWidth } = this.state;
 
-    const item = photos[index];
-    const rowHeight = columnWidth * (item.height / item.width);
+    const splash = photos[index];
+    const rowHeight = columnWidth * (splash.height / splash.width);
     const containerStyle = {
       ...style,
-      backgroundColor: item.color,
+      backgroundColor: splash.color,
       height: rowHeight,
       width: columnWidth
     };
@@ -53,7 +53,7 @@ class Photos extends React.PureComponent {
     return (
       <CellMeasurer cache={this._cache} index={index} key={key} parent={parent}>
         <div style={containerStyle}>
-          <Splash height={rowHeight} src={item.urls.regular} />
+          <Splash height={rowHeight} splash={splash} />
         </div>
       </CellMeasurer>
     );

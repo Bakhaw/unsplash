@@ -1,6 +1,6 @@
 import React, { createContext, Component } from 'react';
 import GalleryAPI from '../api/gallery';
-import photos from '../api/dummy-data/photos';
+// import photos from '../api/dummy-data/photos';
 
 const { Provider, Consumer } = createContext();
 
@@ -11,28 +11,28 @@ export const withContext = Component => props => (
 export default class GalleryProvider extends Component {
   state = {
     isLoading: false,
-    photos
+    photos: []
   };
 
   setLoading = isLoading => this.setState({ isLoading });
 
   getAllPhotos = async page => {
-    this.setState(prevState => ({
-      photos: [...prevState.photos, ...prevState.photos]
-    }));
+    // this.setState(prevState => ({
+    //   photos: [...prevState.photos, ...prevState.photos]
+    // }));
 
-    // if (!this.state.isLoading) {
-    //   try {
-    //     await this.setLoading(true);
-    //     const newPhotos = await GalleryAPI.methods.photos.getAllPhotos(page);
-    //     await this.setState(prevState => ({
-    //       photos: [...prevState.photos, ...newPhotos]
-    //     }));
-    //     await this.setLoading(false);
-    //   } catch (error) {
-    //     console.log('Error', error);
-    //   }
-    // }
+    if (!this.state.isLoading) {
+      try {
+        await this.setLoading(true);
+        const newPhotos = await GalleryAPI.methods.photos.getAllPhotos(page);
+        await this.setState(prevState => ({
+          photos: [...prevState.photos, ...newPhotos]
+        }));
+        await this.setLoading(false);
+      } catch (error) {
+        console.log('Error', error);
+      }
+    }
   };
 
   render() {
