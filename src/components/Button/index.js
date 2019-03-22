@@ -10,21 +10,24 @@ const StyledButton = styled.button`
   padding: 0 10px;
   background-color: hsla(0, 0%, 100%, 0.85);
   border-radius: 4px;
-  border: 1px solid transparent;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   color: #777;
   font-size: 14px;
   font-weight: 500;
   line-height: 30px;
   margin: 0 5px;
-  transition: background-color 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
   &:hover {
     background-color: #fff;
-    transition: background-color 0.15s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border-color: #999;
+    color: #111;
   }
 `;
 
-function Button({ children }) {
-  return <StyledButton>{children}</StyledButton>;
+function Button({ children, onClick }) {
+  return <StyledButton onClick={onClick}>{children}</StyledButton>;
 }
 
 export default Button;

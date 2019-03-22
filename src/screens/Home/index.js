@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { withContext } from '../../context';
 import Photos from './Photos';
+
+const PhotosWrapper = styled.div`
+  padding: 30px;
+`;
 
 class Home extends Component {
   state = {
@@ -31,7 +36,6 @@ class Home extends Component {
     const height = d.offsetHeight;
 
     if (offset >= height) {
-      console.log({ height, offset });
       this.getPhotos(this.state.currentPage);
     }
   };
@@ -42,10 +46,10 @@ class Home extends Component {
     if (photos.length === 0) return <h1>Loading items...!</h1>;
 
     return (
-      <div>
+      <PhotosWrapper>
         <Photos />
         {isLoading && <p>Loading items...!</p>}
-      </div>
+      </PhotosWrapper>
     );
   }
 }

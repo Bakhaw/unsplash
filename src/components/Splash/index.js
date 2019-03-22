@@ -9,7 +9,6 @@ const Photo = styled.img`
 `;
 
 const SplashWrapper = styled.div`
-  cursor: zoom-in;
   &:hover .SplashDetail {
     opacity: 1;
     transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;

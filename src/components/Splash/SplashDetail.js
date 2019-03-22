@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ArrowDownIcon from '@material-ui/icons/ArrowDownward';
+import EyeIcon from '@material-ui/icons/RemoveRedEye';
 import PlusIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
 
 import HeartIcon from 'assets/icons/heart.svg';
 import Button from '../Button';
 
-const Detail = styled.div`
+const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,6 +18,7 @@ const Detail = styled.div`
   right: 0;
   bottom: 0;
   position: absolute;
+  opacity: 0;
   background-image: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.2) 0,
@@ -49,29 +52,22 @@ const Detail = styled.div`
     rgba(0, 0, 0, 0.347) 97.85%,
     rgba(0, 0, 0, 0.35)
   );
-  opacity: 0;
   &:not(:hover) {
     visibility: hidden;
     transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
   }
 `;
 
-const DetailTop = styled.div`
+const DetailRow = styled.div`
   display: flex;
   justify-content: space-between;
-  align-self: flex-end;
+  align-items: center;
 `;
 
 const LikeButton = styled.img`
   height: 32px;
   width: 15px;
   margin-right: 5px;
-`;
-
-const DetailBottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 const UserDetail = styled.div`
@@ -89,19 +85,30 @@ const UserDetail = styled.div`
   }
 `;
 
+const likeImg = () => {
+  alert('liked img');
+};
+
 function SplashDetail({ splash }) {
   return (
-    <Detail className='SplashDetail'>
-      <DetailTop>
-        <Button>
-          <LikeButton alt='Like button' src={HeartIcon} />
-          <span>{splash.likes}</span>
-        </Button>
-        <Button>
-          <PlusIcon fontSize='small' /> Collect
-        </Button>
-      </DetailTop>
-      <DetailBottom>
+    <DetailWrapper className='SplashDetail'>
+      <DetailRow>
+        <Link to={`/photos/${splash.id}`}>
+          <Button>
+            <EyeIcon fontSize='small' />
+          </Button>
+        </Link>
+        <DetailRow>
+          <Button onClick={likeImg} title='Like photo'>
+            <LikeButton alt='Like button' src={HeartIcon} />
+            <span>{splash.likes}</span>
+          </Button>
+          <Button title='Add to collection'>
+            <PlusIcon fontSize='small' /> Collect
+          </Button>
+        </DetailRow>
+      </DetailRow>
+      <DetailRow>
         <UserDetail>
           <img
             alt={`${splash.user.name} avatar`}
@@ -109,11 +116,13 @@ function SplashDetail({ splash }) {
           />
           <span>{splash.user.name}</span>
         </UserDetail>
-        <Button>
-          <ArrowDownIcon fontSize='small' />
-        </Button>
-      </DetailBottom>
-    </Detail>
+        <a href={splash.links.download + '?force=true'}>
+          <Button>
+            <ArrowDownIcon fontSize='small' />
+          </Button>
+        </a>
+      </DetailRow>
+    </DetailWrapper>
   );
 }
 
