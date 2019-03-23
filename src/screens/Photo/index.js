@@ -9,6 +9,7 @@ import TopBar from './TopBar';
 const PhotoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   min-height: calc(100vh - 64px);
 `;
