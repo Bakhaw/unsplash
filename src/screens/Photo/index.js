@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import GalleryAPI from 'api/gallery';
+import Loader from 'components/Loader';
 import BottomBar from './BottomBar';
 import TopBar from './TopBar';
 
-const Wrapper = styled.div`
+const PhotoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: calc(100vh - 64px);
 `;
 
 function Photo({ match }) {
@@ -25,12 +26,12 @@ function Photo({ match }) {
     getPhoto();
   }, []);
 
-  if (splash === null) return <div>Loading ...</div>;
+  if (splash === null) return <Loader wrapperHeight='fullscreen' />;
 
   const height = 350 * (splash.height / splash.width);
 
   return (
-    <Wrapper>
+    <PhotoWrapper>
       <TopBar splash={splash} />
       <img
         alt='Splash'
@@ -42,7 +43,7 @@ function Photo({ match }) {
         }}
       />
       <BottomBar splash={splash} />
-    </Wrapper>
+    </PhotoWrapper>
   );
 }
 

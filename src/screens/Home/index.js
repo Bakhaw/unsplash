@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import Loader from 'components/Loader';
 import Masonry from 'components/Masonry';
 import { withContext } from 'context/';
 
@@ -44,12 +45,12 @@ class Home extends Component {
   render() {
     const { isLoading, photos } = this.props.contextState;
 
-    if (photos.length === 0) return <h1>Loading items...!</h1>;
+    if (photos.length === 0) return <Loader wrapperHeight='fullscreen' />;
 
     return (
       <PhotosWrapper>
         <Masonry />
-        {isLoading && <p>Loading items...!</p>}
+        {isLoading && <Loader />}
       </PhotosWrapper>
     );
   }
