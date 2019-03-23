@@ -38,11 +38,11 @@ const ListItem = styled.li`
   }
 `;
 
-function NavLinks(props) {
+function NavLinks({ location }) {
   return (
     <List>
       {Links.map(({ label, to }, index) => {
-        const isActive = to === props.location.pathname;
+        const isActive = to === location.pathname;
         return (
           <ListItem key={index} isActive={isActive}>
             <Link to={to}>{label}</Link>

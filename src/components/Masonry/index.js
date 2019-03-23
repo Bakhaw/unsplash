@@ -4,24 +4,16 @@ import {
   CellMeasurer,
   CellMeasurerCache,
   createMasonryCellPositioner,
-  Masonry,
+  Masonry as RVMasonry,
   WindowScroller
 } from 'react-virtualized';
-import { withContext } from '../../context';
+
 import Splash from '../../components/Splash';
+import { withContext } from '../../context';
 
-class Photos extends React.PureComponent {
-  constructor(props, context) {
-    super(props, context);
-
-    this._columnCount = 0;
-
-    this._cache = new CellMeasurerCache({
-      defaultHeight: 250,
-      defaultWidth: 200,
-      fixedWidth: true
-    });
-
+class Masonry extends React.PureComponent {
+  constructor() {
+    super();
     this.state = {
       columnWidth: Math.floor(window.screen.width / 3.5),
       height: window.screen.height,
@@ -29,13 +21,19 @@ class Photos extends React.PureComponent {
       overscanByPixels: 0,
       windowScrollerEnabled: true
     };
+    this._cache = new CellMeasurerCache({
+      defaultHeight: 250,
+      defaultWidth: 200,
+      fixedWidth: true
+    });
+    this._columnCount = 0;
   }
 
-  _calculateColumnCount() {
+  _calculateColumnCount = () => {
     const { columnWidth, gutterSize } = this.state;
 
     this._columnCount = Math.floor(this._width / (columnWidth + gutterSize));
-  }
+  };
 
   _cellRenderer = ({ index, key, parent, style }) => {
     const { photos } = this.props.contextState;
@@ -108,7 +106,7 @@ class Photos extends React.PureComponent {
     const { height, overscanByPixels, windowScrollerEnabled } = this.state;
 
     return (
-      <Masonry
+      <RVMasonry
         autoHeight={windowScrollerEnabled}
         cellCount={this.props.contextState.photos.length}
         cellMeasurerCache={this._cache}
@@ -148,4 +146,4 @@ class Photos extends React.PureComponent {
   }
 }
 
-export default withContext(Photos);
+export default withContext(Masonry);

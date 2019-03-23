@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   background-color: hsla(0, 0%, 100%, 0.85);
   border-radius: 4px;
   border: 1px solid #ddd;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   color: #777;
   font-size: 14px;
   font-weight: 500;
@@ -20,9 +20,9 @@ const StyledButton = styled.button`
   transition: all 0.2s ease-in-out;
   &:hover {
     background-color: #fff;
-    transition: all 0.2s ease-in-out;
-    border-color: #999;
     color: #111;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in-out;
   }
 `;
 

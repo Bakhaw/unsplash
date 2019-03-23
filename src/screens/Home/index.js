@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { withContext } from '../../context';
-import Photos from './Photos';
+
+import Masonry from 'components/Masonry';
+import { withContext } from 'context/';
 
 const PhotosWrapper = styled.div`
   padding: 30px;
@@ -47,7 +48,7 @@ class Home extends Component {
 
     return (
       <PhotosWrapper>
-        <Photos />
+        <Masonry />
         {isLoading && <p>Loading items...!</p>}
       </PhotosWrapper>
     );

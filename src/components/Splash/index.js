@@ -1,14 +1,9 @@
 import React from 'react';
 import LazyLoad from 'react-lazy-load';
 import styled from 'styled-components';
-import SplashDetail from './SplashDetail';
+import Detail from './Detail';
 
-const Photo = styled.img`
-  height: 100%;
-  width: 100%;
-`;
-
-const SplashWrapper = styled.div`
+const Wrapper = styled.div`
   &:hover .SplashDetail {
     opacity: 1;
     transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
@@ -16,14 +11,19 @@ const SplashWrapper = styled.div`
   }
 `;
 
+const Image = styled.img`
+  height: 100%;
+  width: 100%;
+`;
+
 function Splash({ height, splash }) {
   return (
-    <SplashWrapper>
+    <Wrapper>
       <LazyLoad height={height}>
-        <Photo alt='Unsplash img' src={splash.urls.regular} />
+        <Image alt='Unsplash img' src={splash.urls.regular} />
       </LazyLoad>
-      <SplashDetail splash={splash} />
-    </SplashWrapper>
+      <Detail splash={splash} />
+    </Wrapper>
   );
 }
 

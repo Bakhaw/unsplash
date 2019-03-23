@@ -1,5 +1,5 @@
 import React, { createContext, Component } from 'react';
-import GalleryAPI from '../api/gallery';
+import GalleryAPI from 'api/gallery';
 // import photos from '../api/dummy-data/photos';
 
 const { Provider, Consumer } = createContext();
@@ -37,6 +37,7 @@ export default class GalleryProvider extends Component {
 
   render() {
     const { isLoading, photos } = this.state;
+    const { children } = this.props;
 
     const value = {
       contextActions: {
@@ -48,6 +49,6 @@ export default class GalleryProvider extends Component {
       }
     };
 
-    return <Provider value={value}>{this.props.children}</Provider>;
+    return <Provider value={value}>{children}</Provider>;
   }
 }

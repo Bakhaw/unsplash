@@ -1,9 +1,9 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import Router from './router';
-import GalleryProvider from './context';
-import UpdateApp from './components/UpdateApp';
+import UpdateApp from 'components/UpdateApp';
+import Router from 'router/';
+import GalleryProvider from 'context/';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -22,6 +22,9 @@ const GlobalStyle = createGlobalStyle`
   }
   li {
     list-style-type: none;
+  }
+  span {
+    margin: 0 5px;
   }
 `;
 

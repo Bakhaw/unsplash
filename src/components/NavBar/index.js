@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import NavLinks from './NavLinks';
 
-const AppBar = styled.nav`
+const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,9 +16,9 @@ const AppBar = styled.nav`
 
 function NavBar() {
   return (
-    <AppBar>
+    <Wrapper>
       <NavLinks />
-    </AppBar>
+    </Wrapper>
   );
 }
 
