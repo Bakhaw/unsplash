@@ -1,12 +1,12 @@
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
+import React, { Component } from 'react';
+import { Dialog as MaterialDialog } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 
 import Button from 'components/Button';
 
-class SimpleDialogDemo extends React.Component {
+class Dialog extends Component {
   state = {
-    open: true
+    open: false
   };
 
   handleOpen = () => {
@@ -25,7 +25,7 @@ class SimpleDialogDemo extends React.Component {
     return (
       <div>
         <Button onClick={this.handleOpen}>{buttonContent}</Button>
-        <Dialog
+        <MaterialDialog
           aria-labelledby='Dialog'
           onClose={this.handleClose}
           open={open}
@@ -40,10 +40,10 @@ class SimpleDialogDemo extends React.Component {
           >
             {dialogContent}
           </DialogContent>
-        </Dialog>
+        </MaterialDialog>
       </div>
     );
   }
 }
 
-export default SimpleDialogDemo;
+export default Dialog;
