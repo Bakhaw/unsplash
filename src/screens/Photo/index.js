@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import GalleryAPI from 'api/gallery';
 import Loader from 'components/Loader';
 import BottomBar from './BottomBar';
+import Related from './Related';
 import TopBar from './TopBar';
 
 const PhotoWrapper = styled.div`
@@ -44,6 +45,7 @@ function Photo({ match }) {
         }}
       />
       <BottomBar splash={splash} />
+      <Related splash={splash} />
     </PhotoWrapper>
   );
 }
