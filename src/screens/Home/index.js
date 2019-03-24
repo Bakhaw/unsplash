@@ -49,7 +49,7 @@ class Home extends Component {
 
     return (
       <PhotosWrapper>
-        <Masonry />
+        <Masonry cellCount={photos.length} photos={photos} />
         {isLoading && <Loader />}
       </PhotosWrapper>
     );
