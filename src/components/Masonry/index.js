@@ -36,7 +36,7 @@ class Masonry extends React.PureComponent {
   };
 
   _cellRenderer = ({ index, key, parent, style }) => {
-    const { photos } = this.props.contextState;
+    const { photos } = this.props;
     const { columnWidth } = this.state;
 
     const splash = photos[index];
@@ -108,7 +108,7 @@ class Masonry extends React.PureComponent {
     return (
       <RVMasonry
         autoHeight={windowScrollerEnabled}
-        cellCount={this.props.contextState.photos.length}
+        cellCount={this.props.cellCount}
         cellMeasurerCache={this._cache}
         cellPositioner={this._cellPositioner}
         cellRenderer={this._cellRenderer}
