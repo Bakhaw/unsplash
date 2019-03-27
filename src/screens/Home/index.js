@@ -1,45 +1,19 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 import Loader from 'components/Loader';
 import Masonry from 'components/Masonry';
 import { withContext } from 'context/';
-
-const PhotosWrapper = styled.div`
-  padding: 30px;
-`;
+import Hero from './Hero';
 
 class Home extends Component {
-  state = {
-    currentPage: 1
-  };
-
-  componentDidMount() {
+  async componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener('scroll', this.handleOnScroll);
-    this.getPhotos(this.state.currentPage);
+    await this.getPhotos();
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleOnScroll);
-  }
-
-  getPhotos = async page => {
-    const { getAllPhotos } = this.props.contextActions;
-    await getAllPhotos(page);
-    await this.setState(prevState => ({
-      currentPage: prevState.currentPage + 1
-    }));
-  };
-
-  handleOnScroll = () => {
-    const d = document.documentElement;
-    const offset = d.scrollTop + window.innerHeight;
-    const height = d.offsetHeight;
-
-    if (offset >= height) {
-      this.getPhotos(this.state.currentPage);
-    }
+  getPhotos = async () => {
+    const { getData } = this.props.contextActions;
+    await getData({ type: 'photos', name: 'getAllPhotos' });
   };
 
   render() {
@@ -48,12 +22,47 @@ class Home extends Component {
     if (photos.length === 0) return <Loader wrapperHeight='fullscreen' />;
 
     return (
-      <PhotosWrapper>
-        <Masonry cellCount={photos.length} photos={photos} />
+      <>
+        <Hero />
+        <Masonry
+          cellCount={photos.length}
+          isLoading={isLoading}
+          onBottomFired={this.getPhotos}
+          photos={photos}
+        />
         {isLoading && <Loader />}
-      </PhotosWrapper>
+      </>
     );
   }
 }
+
+// function Home({ contextActions, contextState }) {
+//   useEffect(() => {
+//     window.scrollTo(0, 0);
+//     getPhotos();
+//   }, []);
+
+//   const getPhotos = async () => {
+//     const { getData } = contextActions;
+//     await getData({ type: 'photos', name: 'getAllPhotos' });
+//   };
+
+//   const { isLoading, photos } = contextState;
+
+//   if (photos.length === 0) return <Loader wrapperHeight='fullscreen' />;
+
+//   return (
+//     <>
+//       <Hero />
+//       <Masonry
+//         cellCount={photos.length}
+//         isLoading={isLoading}
+//         onBottomFired={getPhotos}
+//         photos={photos}
+//       />
+//       {isLoading && <Loader />}
+//     </>
+//   );
+// }
 
 export default withContext(Home);

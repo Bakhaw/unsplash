@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import GalleryAPI from 'api/gallery';
 import Loader from 'components/Loader';
+import UnsplashLink from 'components/UnsplashLink';
 import BottomBar from './BottomBar';
 import Related from './Related';
 import TopBar from './TopBar';
@@ -28,7 +29,7 @@ function Photo({ match }) {
     getPhoto();
   }, []);
 
-  if (splash === null) return <Loader wrapperHeight='fullscreen' />;
+  if (!splash) return <Loader wrapperHeight='fullscreen' />;
 
   const height = 350 * (splash.height / splash.width);
 
@@ -36,7 +37,7 @@ function Photo({ match }) {
     <PhotoWrapper>
       <TopBar splash={splash} />
       <img
-        alt='Splash'
+        alt={`Splash by ${splash.user.name}`}
         src={splash.urls.raw}
         style={{
           backgroundColor: splash.color,
@@ -44,6 +45,7 @@ function Photo({ match }) {
           width: 350
         }}
       />
+      <UnsplashLink user={splash.user} />
       <BottomBar splash={splash} />
       <Related splash={splash} />
     </PhotoWrapper>

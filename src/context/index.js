@@ -10,42 +10,48 @@ export const withContext = Component => props => (
 
 export default class GalleryProvider extends Component {
   state = {
+    currentPage: 1,
     isLoading: false,
     photos: []
   };
 
-  setLoading = isLoading => this.setState({ isLoading });
+  setLoading = async isLoading => this.setState({ isLoading });
 
-  getAllPhotos = async page => {
-    // this.setState(prevState => ({
-    //   photos: [...prevState.photos, ...prevState.photos]
-    // }));
+  getData = async (method, params) => {
+    // ? method: {
+    // ?  type: 'collections' || 'global' || 'photos' || 'users',
+    // ?  name: see in api/gallery/index.js
+    // ? }
 
-    if (!this.state.isLoading) {
-      try {
-        await this.setLoading(true);
-        const newPhotos = await GalleryAPI.methods.photos.getAllPhotos(page);
-        await this.setState(prevState => ({
-          photos: [...prevState.photos, ...newPhotos]
-        }));
-        await this.setLoading(false);
-      } catch (error) {
-        console.log('Error', error);
-      }
+    try {
+      await this.setLoading(true);
+      const newData = await GalleryAPI.methods[method.type][method.name]({
+        ...params,
+        isLoading: this.state.isLoading,
+        page: this.state.currentPage
+      });
+
+      if (!newData) return;
+
+      await this.setState(prevState => ({
+        currentPage: prevState.currentPage + 1,
+        isLoading: false,
+        photos: [...prevState.photos, ...newData]
+      }));
+    } catch (err) {
+      return console.log(err);
     }
   };
 
   render() {
-    const { isLoading, photos } = this.state;
     const { children } = this.props;
 
     const value = {
       contextActions: {
-        getAllPhotos: this.getAllPhotos
+        getData: this.getData
       },
       contextState: {
-        isLoading,
-        photos
+        ...this.state
       }
     };
 

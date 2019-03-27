@@ -1,9 +1,9 @@
 import axios from 'axios';
+import keys from './keys';
 
 const Gallery = {
   config: {
-    accessKey:
-      '41e3f9e71f60bae04300d18b08fef18dc42c596f9000b6b4cdce1f01bb54828c',
+    accessKey: keys.accessKey,
     collectionsUrl: 'https://api.unsplash.com/collections/',
     photosUrl: 'https://api.unsplash.com/photos/',
     searchUrl: 'https://api.unsplash.com/search/',
@@ -47,14 +47,14 @@ const Gallery = {
       }
     },
     global: {
-      search: async (searchType, query) => {
+      search: async (searchType, query, page) => {
         // ? available searchType
         // "collections/"
         // "photos/"
         // "users/"
         try {
           const request = await axios.get(
-            `${searchUrl}${searchType}?query=${query}&client_id=${accessKey}`
+            `${searchUrl}${searchType}/?query=${query}&per_page=10&page=${page}&client_id=${accessKey}`
           );
           return request.data;
         } catch (error) {
@@ -76,10 +76,11 @@ const Gallery = {
       }
     },
     photos: {
-      getAllPhotos: async currentPage => {
+      getAllPhotos: async ({ page }) => {
+        console.log({ page });
         try {
           const request = await axios.get(
-            `${photosUrl}?per_page=10&page=${currentPage}&client_id=${accessKey}`
+            `${photosUrl}?per_page=10&page=${page}&client_id=${accessKey}`
           );
 
           return request.data;
@@ -119,14 +120,14 @@ const Gallery = {
           console.log('Error', error);
         }
       },
-      getUserData: async (username, dataType) => {
+      getUserData: async (username, dataType, page) => {
         // ? available dataType
-        // "photos/"
-        // "collections/"
-        // "likes/"
+        // "photos"
+        // "collections"
+        // "likes"
         try {
           const request = await axios.get(
-            `${usersUrl}${username}${dataType}?client_id=${accessKey}`
+            `${usersUrl}${username}/${dataType}/?per_page=1&page=${page}&client_id=${accessKey}`
           );
           return request.data;
         } catch (error) {

@@ -7,6 +7,7 @@ import GalleryProvider from 'context/';
 
 const GlobalStyle = createGlobalStyle`
   * {
+    transition: all 0.2s ease-in-out;
     font-family: -apple-system, BlinkMacSystemFont, 
     "Segoe UI", "Roboto", "Oxygen", 
     "Ubuntu", "Cantarell", "Fira Sans", 

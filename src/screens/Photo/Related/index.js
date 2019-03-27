@@ -19,12 +19,7 @@ class Related extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener('scroll', this.handleOnScroll);
     this.getUserPhotos();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleOnScroll);
   }
 
   setLoading = isLoading => this.setState({ isLoading });
@@ -40,30 +35,14 @@ class Related extends Component {
       currentPage
     );
 
-    console.log(newRelatedPhotos);
     if (!newRelatedPhotos) return;
 
     await this.setState(prevState => ({
+      currentPage: prevState.currentPage + 1,
       relatedPhotos: [...prevState.relatedPhotos, ...newRelatedPhotos]
-    }));
-    await this.setState(prevState => ({
-      currentPage: prevState.currentPage + 1
     }));
 
     await this.setLoading(false);
-  };
-
-  // TODO, use handleOnScroll() function on <Masonry /> component and
-  // TODO add a "onBottomFired" props, which is a function firing when user hits
-  // TODO the bottom of the page
-  handleOnScroll = () => {
-    const d = document.documentElement;
-    const offset = d.scrollTop + window.innerHeight;
-    const height = d.offsetHeight;
-
-    if (offset >= height && !this.state.isLoading) {
-      this.getUserPhotos();
-    }
   };
 
   render() {
@@ -75,7 +54,12 @@ class Related extends Component {
     return (
       <Wrapper>
         <h1>Photos by {relatedPhotos[0].user.name}</h1>
-        <Masonry cellCount={relatedPhotos.length} photos={relatedPhotos} />
+        <Masonry
+          cellCount={relatedPhotos.length}
+          isLoading={isLoading}
+          onBottomFired={this.getUserPhotos}
+          photos={relatedPhotos}
+        />
         {isLoading && <Loader />}
       </Wrapper>
     );

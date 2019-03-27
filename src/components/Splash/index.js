@@ -6,7 +6,6 @@ import Detail from './Detail';
 const Wrapper = styled.div`
   &:hover .SplashDetail {
     opacity: 1;
-    transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
     visibility: visible;
   }
 `;

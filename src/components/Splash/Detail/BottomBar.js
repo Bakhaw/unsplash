@@ -2,7 +2,9 @@ import React from 'react';
 import ArrowDownIcon from '@material-ui/icons/ArrowDownward';
 import styled from 'styled-components';
 
+import GalleryAPI from 'api/gallery';
 import Button from 'components/Button';
+import UserDetail from 'components/UserDetail';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,36 +17,24 @@ const Wrapper = styled.div`
   padding: 20px;
 `;
 
-const UserDetail = styled.div`
-  display: flex;
-  align-items: center;
-  & img {
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  & span {
-    color: #fff;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  }
+const DownloadLink = styled.a`
+  height: 32px;
+  width: 40px;
 `;
 
 function BottomBar({ splash }) {
   return (
     <Wrapper>
-      <UserDetail>
-        <img
-          alt={`${splash.user.name} avatar`}
-          src={splash.user.profile_image.large}
-        />
-        <span>{splash.user.name}</span>
-      </UserDetail>
-      <a href={splash.links.download + '?force=true'}>
+      <UserDetail splash={splash} />
+      <DownloadLink
+        href={`${splash.links.download_location}?force=true&client_id=${
+          GalleryAPI.config.accessKey
+        }`}
+      >
         <Button>
           <ArrowDownIcon fontSize='small' />
         </Button>
-      </a>
+      </DownloadLink>
     </Wrapper>
   );
 }

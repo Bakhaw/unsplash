@@ -6,7 +6,7 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 32px;
+  height: 100%;
   padding: 0 10px;
   background-color: hsla(0, 0%, 100%, 0.85);
   border-radius: 4px;
@@ -17,12 +17,10 @@ const StyledButton = styled.button`
   font-weight: 500;
   line-height: 30px;
   margin: 0 5px;
-  transition: all 0.2s ease-in-out;
   &:hover {
     background-color: #fff;
     color: #111;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
-    transition: all 0.2s ease-in-out;
   }
 `;
 

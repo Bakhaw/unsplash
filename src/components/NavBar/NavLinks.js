@@ -17,7 +17,6 @@ const List = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
 `;
 
 const ListItem = styled.li`
@@ -26,7 +25,6 @@ const ListItem = styled.li`
     font-size: 16px;
     font-weight: 600;
     color: #999;
-    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     &:hover {
       color: #111;
     }

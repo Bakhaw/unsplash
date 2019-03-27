@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   right: 0;
   bottom: 0;
   opacity: 0;
-  transition: all 0.2s ease-in-out;
   background-image: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.2) 0,
@@ -51,7 +50,6 @@ const Wrapper = styled.div`
   );
   &:not(:hover) {
     visibility: hidden;
-    transition: all 0.2s ease-in-out;
   }
 `;
 

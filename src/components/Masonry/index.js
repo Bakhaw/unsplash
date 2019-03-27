@@ -19,7 +19,8 @@ class Masonry extends React.PureComponent {
       height: window.screen.height,
       gutterSize: 30,
       overscanByPixels: 0,
-      windowScrollerEnabled: true
+      windowScrollerEnabled: true,
+      loadMore: true
     };
     this._cache = new CellMeasurerCache({
       defaultHeight: 250,
@@ -28,6 +29,27 @@ class Masonry extends React.PureComponent {
     });
     this._columnCount = 0;
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleOnScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleOnScroll);
+  }
+
+  handleOnScroll = async () => {
+    const { onBottomFired } = this.props;
+    const d = document.documentElement;
+    const offset = d.scrollTop + window.innerHeight;
+    const height = d.offsetHeight;
+
+    if (height - offset <= 150) {
+      if (this.props.isLoading) return;
+      await onBottomFired();
+      console.log('loading more items..!');
+    }
+  };
 
   _calculateColumnCount = () => {
     const { columnWidth, gutterSize } = this.state;
