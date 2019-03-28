@@ -25,8 +25,7 @@ function UnsplashLink({ user }) {
   return (
     <Wrapper>
       <span>
-        Photo by <Link href={photoLink}>{user.name}</Link>
-        on
+        Photo by <Link href={photoLink}>{user.name}</Link> on{' '}
         <Link href={unsplashLink}>Unsplash</Link>
       </span>
     </Wrapper>

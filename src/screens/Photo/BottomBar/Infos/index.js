@@ -34,6 +34,7 @@ const InfosDialogContentWrapper = styled.div`
     font-size: 21px;
   }
   & h2 {
+    text-transform: capitalize;
     font-size: 12px;
   }
   & h3  {
@@ -48,62 +49,69 @@ const InfosDialogContentWrapper = styled.div`
   }
 `;
 
-const InfoDialogContent = ({ splash }) => (
-  <InfosDialogContentWrapper>
-    <Row>
-      <div>
-        <h1>Info</h1>
-        <h2>Published on {moment(splash.created_at).format('MMMM D, YYYY')}</h2>
-      </div>
-    </Row>
+const InfoDialogContent = ({ splash }) => {
+  const SplashStats = ['views', 'downloads', 'likes'];
+  const CameraDetail = [
+    {
+      label: 'Camera Make',
+      key: 'make'
+    },
+    {
+      label: 'Camera Model',
+      key: 'model'
+    },
+    {
+      label: 'Focal Length',
+      key: 'focal_length'
+    },
+    {
+      label: 'Aperture',
+      key: 'aperture'
+    },
+    {
+      label: 'Shutter speed',
+      key: 'exposure_time'
+    },
+    {
+      label: 'ISO',
+      key: 'iso'
+    }
+  ];
+  return (
+    <InfosDialogContentWrapper>
+      <Row>
+        <div>
+          <h1>Info</h1>
+          <h2>
+            Published on {moment(splash.created_at).format('MMMM D, YYYY')}
+          </h2>
+        </div>
+      </Row>
 
-    <Row>
-      <Column>
-        <h2>Views</h2>
-        <h3>{splash.views}</h3>
-      </Column>
-      <Column>
-        <h2>Downloads</h2>
-        <h3>{splash.downloads}</h3>
-      </Column>
-      <Column>
-        <h2>Likes</h2>
-        <h3>{splash.likes}</h3>
-      </Column>
-    </Row>
-    <hr />
-    <Row>
-      <Column>
-        <h4>Camera Make</h4>
-        {splash.exif.make}
-      </Column>
-      <Column>
-        <h4>Camera Model</h4>
-        {splash.exif.model}
-      </Column>
-      <Column>
-        <h4>Focal Length</h4>
-        {splash.exif.focal_length}
-      </Column>
-      <Column>
-        <h4>Aperture</h4>
-        {splash.exif.aperture}
-      </Column>
-      <Column>
-        <h4>Shutter Speed</h4>
-        {splash.exif.exposure_time}s
-      </Column>
-      <Column>
-        <h4>ISO</h4>
-        {splash.exif.iso}
-      </Column>
-      <Column>
-        <h4>Dimensions</h4>
-        {splash.width} x {splash.height}
-      </Column>
-    </Row>
-  </InfosDialogContentWrapper>
-);
+      <Row>
+        {SplashStats.map((stat, index) => (
+          <Column key={`stat-${index}`}>
+            <h2>{stat}</h2>
+            <h3>{splash[stat]}</h3>
+          </Column>
+        ))}
+      </Row>
+      <hr />
+      <Row>
+        {CameraDetail.map(({ label, key }, index) => (
+          <Column key={`camera-detail-${index}`}>
+            <h4>{label}</h4>
+            {splash.exif[key]}
+          </Column>
+        ))}
+        <Column>
+          <h4>Dimensions</h4>
+          {splash.width} x {splash.height}
+        </Column>
+      </Row>
+    </InfosDialogContentWrapper>
+  );
+};
 
 const InfoDialogButton = (
   <>

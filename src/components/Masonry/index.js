@@ -39,15 +39,14 @@ class Masonry extends React.PureComponent {
   }
 
   handleOnScroll = async () => {
-    const { onBottomFired } = this.props;
+    const { isLoading, onBottomFired } = this.props;
     const d = document.documentElement;
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
 
     if (height - offset <= 150) {
-      if (this.props.isLoading) return;
+      if (isLoading) return;
       await onBottomFired();
-      console.log('loading more items..!');
     }
   };
 

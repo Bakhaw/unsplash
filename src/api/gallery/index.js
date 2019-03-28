@@ -49,9 +49,9 @@ const Gallery = {
     global: {
       search: async (searchType, query, page) => {
         // ? available searchType
-        // "collections/"
-        // "photos/"
-        // "users/"
+        // "collections"
+        // "photos"
+        // "users"
         try {
           const request = await axios.get(
             `${searchUrl}${searchType}/?query=${query}&per_page=10&page=${page}&client_id=${accessKey}`

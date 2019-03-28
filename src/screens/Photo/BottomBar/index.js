@@ -4,6 +4,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import styled from 'styled-components';
 
 import Button from 'components/Button';
+
 import Infos from './Infos';
 
 const Wrapper = styled.div`

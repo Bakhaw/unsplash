@@ -1,6 +1,6 @@
 import React, { createContext, Component } from 'react';
 import GalleryAPI from 'api/gallery';
-// import photos from '../api/dummy-data/photos';
+import dummyPhotos from '../api/dummy-data/photos';
 
 const { Provider, Consumer } = createContext();
 
@@ -8,7 +8,7 @@ export const withContext = Component => props => (
   <Consumer>{context => <Component {...context} {...props} />}</Consumer>
 );
 
-export default class GalleryProvider extends Component {
+class GalleryProvider extends Component {
   state = {
     currentPage: 1,
     isLoading: false,
@@ -23,24 +23,30 @@ export default class GalleryProvider extends Component {
     // ?  name: see in api/gallery/index.js
     // ? }
 
-    try {
-      await this.setLoading(true);
-      const newData = await GalleryAPI.methods[method.type][method.name]({
-        ...params,
-        isLoading: this.state.isLoading,
-        page: this.state.currentPage
-      });
+    await this.setLoading(true);
+    this.setState(prevState => ({
+      photos: [...prevState.photos, ...dummyPhotos]
+    }));
+    await this.setLoading(false);
 
-      if (!newData) return;
+    // try {
+    //   await this.setLoading(true);
+    //   const newData = await GalleryAPI.methods[method.type][method.name]({
+    //     ...params,
+    //     isLoading: this.state.isLoading,
+    //     page: this.state.currentPage
+    //   });
 
-      await this.setState(prevState => ({
-        currentPage: prevState.currentPage + 1,
-        isLoading: false,
-        photos: [...prevState.photos, ...newData]
-      }));
-    } catch (err) {
-      return console.log(err);
-    }
+    //   if (!newData) return;
+
+    //   await this.setState(prevState => ({
+    //     currentPage: prevState.currentPage + 1,
+    //     isLoading: false,
+    //     photos: [...prevState.photos, ...newData]
+    //   }));
+    // } catch (err) {
+    //   return console.log(err);
+    // }
   };
 
   render() {
@@ -58,3 +64,5 @@ export default class GalleryProvider extends Component {
     return <Provider value={value}>{children}</Provider>;
   }
 }
+
+export default GalleryProvider;
