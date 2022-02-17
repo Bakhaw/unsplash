@@ -91,10 +91,10 @@ class Search extends Component {
   };
 
   render() {
-    const { isLoading, collections, photos, users, stats } = this.state;
+    const { isLoading, photos, stats } = this.state;
     const { searchQuery, searchType } = this.props.match.params;
 
-    // if (photos.length === 0 || collections.length === 0 || users.length === 0)
+    // if (photos.length === 0 || this.state.collections.length === 0 || this.state.users.length === 0)
     //   return <Loader wrapperHeight='fullscreen' />;
 
     if (photos.length === 0) return <Loader wrapperHeight='fullscreen' />;

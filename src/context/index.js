@@ -1,21 +1,20 @@
 import React, { createContext, Component } from 'react';
-import GalleryAPI from '../api/gallery';
+// import GalleryAPI from '../api/gallery';
 import dummyPhotos from '../api/dummy-data/photos';
 
 const { Provider, Consumer } = createContext();
 
-export const withContext = Component => props => (
-  <Consumer>{context => <Component {...context} {...props} />}</Consumer>
-);
+export const withContext = (Component) => (props) =>
+  <Consumer>{(context) => <Component {...context} {...props} />}</Consumer>;
 
 class GalleryProvider extends Component {
   state = {
     currentPage: 1,
     isLoading: false,
-    photos: []
+    photos: [],
   };
 
-  setLoading = async isLoading => this.setState({ isLoading });
+  setLoading = async (isLoading) => this.setState({ isLoading });
 
   getData = async (method, params) => {
     // ? method: {
@@ -24,8 +23,8 @@ class GalleryProvider extends Component {
     // ? }
 
     await this.setLoading(true);
-    this.setState(prevState => ({
-      photos: [...prevState.photos, ...dummyPhotos]
+    this.setState((prevState) => ({
+      photos: [...prevState.photos, ...dummyPhotos],
     }));
     await this.setLoading(false);
 
@@ -54,11 +53,11 @@ class GalleryProvider extends Component {
 
     const value = {
       contextActions: {
-        getData: this.getData
+        getData: this.getData,
       },
       contextState: {
-        ...this.state
-      }
+        ...this.state,
+      },
     };
 
     return <Provider value={value}>{children}</Provider>;

@@ -11,10 +11,8 @@ const HeroWrapper = styled.div`
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: ${props =>
-    `linear-gradient(#000 0%, rgba(0, 0, 0, 0.65) 0%), url('${
-      props.background
-    }')`};
+  background-image: ${(props) =>
+    `linear-gradient(#000 0%, rgba(0, 0, 0, 0.65) 0%), url('${props.background}')`};
   height: calc(100vh - (64px + 10vw));
   padding: 10vw 15vw 0 15vw;
   margin-bottom: 40px;
@@ -79,7 +77,10 @@ function Hero() {
       <Title>React Gallery</Title>
       <Subtitle>Beautiful, free photos.</Subtitle>
       <Subtitle>
-        Gifted by the world’s most generous community of photographers. 🎁
+        Gifted by the world’s most generous community of photographers.
+        <span aria-label='Gift icon' role='img'>
+          🎁
+        </span>
       </Subtitle>
       <Form />
       <Credit>
