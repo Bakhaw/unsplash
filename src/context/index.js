@@ -1,5 +1,5 @@
 import React, { createContext, Component } from 'react';
-import GalleryAPI from 'api/gallery';
+import GalleryAPI from '../api/gallery';
 import dummyPhotos from '../api/dummy-data/photos';
 
 const { Provider, Consumer } = createContext();

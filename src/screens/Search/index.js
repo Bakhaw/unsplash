@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import GalleryAPI from 'api/gallery';
-import Loader from 'components/Loader';
-import Masonry from 'components/Masonry';
+import GalleryAPI from '../../api/gallery';
+import Loader from '../../components/Loader';
+import Masonry from '../../components/Masonry';
 
 const Wrapper = styled.div`
   padding: 20px 40px;
@@ -23,7 +23,7 @@ const StatsWrapper = styled.div`
 const Stat = styled.h2`
   cursor: pointer;
   text-transform: capitalize;
-  color: ${props => (props.activePath ? '#111' : '#999')};
+  color: ${(props) => (props.activePath ? '#111' : '#999')};
   font-weight: 500;
   font-size: 18px;
   margin-right: 20px;
@@ -42,8 +42,8 @@ class Search extends Component {
     stats: {
       photos: null,
       collections: null,
-      users: null
-    }
+      users: null,
+    },
   };
 
   async componentDidMount() {
@@ -52,9 +52,9 @@ class Search extends Component {
     await this.getData('users');
   }
 
-  setLoading = isLoading => this.setState({ isLoading });
+  setLoading = (isLoading) => this.setState({ isLoading });
 
-  getData = async dataType => {
+  getData = async (dataType) => {
     await this.setLoading(true);
 
     const { search } = GalleryAPI.methods.global;
@@ -64,18 +64,18 @@ class Search extends Component {
 
     if (!newData) return;
 
-    await this.setState(prevState => ({
+    await this.setState((prevState) => ({
       currentPage: prevState.currentPage + 1,
       [dataType]: [...prevState[dataType], ...newData.results],
       stats: {
         ...prevState.stats,
-        [dataType]: newData.total
+        [dataType]: newData.total,
       },
-      isLoading: false
+      isLoading: false,
     }));
   };
 
-  formatStats = stats => {
+  formatStats = (stats) => {
     // ty https://stackoverflow.com/a/40724354 <3
     const SI_SYMBOL = ['', 'k', 'M', 'G', 'T', 'P', 'E'];
 
@@ -94,8 +94,10 @@ class Search extends Component {
     const { isLoading, collections, photos, users, stats } = this.state;
     const { searchQuery, searchType } = this.props.match.params;
 
-    if (photos.length === 0 || collections.length === 0 || users.length === 0)
-      return <Loader wrapperHeight='fullscreen' />;
+    // if (photos.length === 0 || collections.length === 0 || users.length === 0)
+    //   return <Loader wrapperHeight='fullscreen' />;
+
+    if (photos.length === 0) return <Loader wrapperHeight='fullscreen' />;
 
     return (
       <Wrapper>

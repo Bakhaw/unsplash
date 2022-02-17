@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import Input from 'components/Input';
+import Input from '../../../components/Input';
 
 function Form({ history }) {
   const [search, setSearch] = useState('');

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import Loader from 'components/Loader';
-import Masonry from 'components/Masonry';
-import { withContext } from 'context/';
+import Loader from '../../components/Loader';
+import Masonry from '../../components/Masonry';
+import { withContext } from '../../context';
 import Hero from './Hero';
 
 function Home({ contextActions, contextState }) {

@@ -3,8 +3,8 @@ import ArrowDownIcon from '@material-ui/icons/ArrowDownward';
 import PlusIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
 
-import HeartIcon from 'assets/icons/heart.svg';
-import Button from 'components/Button';
+import HeartIcon from '../../../assets/icons/heart.svg';
+import Button from '../../../components/Button';
 
 const Wrapper = styled.div`
   display: flex;

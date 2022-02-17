@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import NavBar from 'components/NavBar';
-import Home from 'screens/Home';
-import Photo from 'screens/Photo';
-import Search from 'screens/Search';
+import NavBar from '../components/NavBar';
+import Home from '../screens/Home';
+import Photo from '../screens/Photo';
+import Search from '../screens/Search';
 
 function Router() {
   return (

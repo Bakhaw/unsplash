@@ -2,9 +2,9 @@ import React from 'react';
 import ArrowDownIcon from '@material-ui/icons/ArrowDownward';
 import styled from 'styled-components';
 
-import GalleryAPI from 'api/gallery';
-import Button from 'components/Button';
-import UserDetail from 'components/UserDetail';
+import GalleryAPI from '../../../api/gallery';
+import Button from '../../Button';
+import UserDetail from '../../UserDetail';
 
 const Wrapper = styled.div`
   display: flex;

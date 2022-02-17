@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import GalleryAPI from 'api/gallery';
-import Loader from 'components/Loader';
-import UnsplashLink from 'components/UnsplashLink';
+import GalleryAPI from '../../../api/gallery';
+import Loader from '../../../components/Loader';
+import UnsplashLink from '../../../components/UnsplashLink';
 
 import Form from './Form';
 

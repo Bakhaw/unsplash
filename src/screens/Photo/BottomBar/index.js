@@ -3,7 +3,7 @@ import LocationIcon from '@material-ui/icons/LocationOn';
 import ShareIcon from '@material-ui/icons/Share';
 import styled from 'styled-components';
 
-import Button from 'components/Button';
+import Button from '../../../components/Button';
 
 import Infos from './Infos';
 

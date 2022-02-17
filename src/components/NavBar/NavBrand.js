@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import BrandLogo from 'assets/images/logo.png';
+import BrandLogo from '../../assets/images/logo.png';
 
 const Logo = styled.img`
   height: 45px;

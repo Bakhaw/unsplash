@@ -1,9 +1,9 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import UpdateApp from 'components/UpdateApp';
-import Router from 'router/';
-import GalleryProvider from 'context/';
+import UpdateApp from './components/UpdateApp';
+import Router from './router';
+import GalleryProvider from './context';
 
 const GlobalStyle = createGlobalStyle`
   * {

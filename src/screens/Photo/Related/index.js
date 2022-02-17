@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import GalleryAPI from 'api/gallery';
-import Loader from 'components/Loader';
-import Masonry from 'components/Masonry';
+import GalleryAPI from '../../../api/gallery';
+import Loader from '../../../components/Loader';
+import Masonry from '../../../components/Masonry';
 
 const Wrapper = styled.div`
   height: 100vh;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dialog as MaterialDialog } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 
-import Button from 'components/Button';
+import Button from '../Button';
 
 class Dialog extends Component {
   state = {

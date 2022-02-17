@@ -3,7 +3,7 @@ import moment from 'moment';
 import InfoIcon from '@material-ui/icons/Info';
 import styled from 'styled-components';
 
-import Dialog from 'components/Dialog';
+import Dialog from '../../../../components/Dialog';
 
 const Row = styled.div`
   display: flex;

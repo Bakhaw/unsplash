@@ -8,7 +8,7 @@ import {
   WindowScroller
 } from 'react-virtualized';
 
-import Splash from '../../components/Splash';
+import Splash from '../Splash';
 import { withContext } from '../../context';
 
 class Masonry extends React.PureComponent {
