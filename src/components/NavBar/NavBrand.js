@@ -5,9 +5,8 @@ import styled from 'styled-components';
 import BrandLogo from '../../assets/images/logo.png';
 
 const Logo = styled.img`
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
+  height: 30px;
+  width: 30px;
 `;
 
 function NavBrand() {
